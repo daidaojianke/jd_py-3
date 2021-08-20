@@ -12,7 +12,9 @@ process_num: 4
 joy_process_num: 1
 
 jd_cookies:
-  - pt_pin=jd_522547b1ff57c;pt_key=AAJg9lBcADBhRyA85du3ap3HxkJVbF3_k7dBft_ry-uyDzOzTLPv-TJg0-GBfwibsrlxTJ5e7Kw;
+  - pt_pin=;pt_key=;
+  - pt_pin=;pt_key=;
+  - pt_pin=;pt_key=;
  
 # 东东农场是否使用水滴换豆卡, 100水滴换20京豆
 jd_farm_bean_card: false
