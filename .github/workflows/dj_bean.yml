@@ -38,7 +38,7 @@ jobs:
              sed -i "22c/${{ secrets.JD_COOKIE8 }}" ./config.yaml
              sed -i "23c/${{ secrets.JD_COOKIE9 }}" ./config.yaml
              sed -i "24c/${{ secrets.JD_COOKIE10 }}" ./config.yaml
-             sed -i "15,14s/^/  - /g" ./config.yaml
+             sed -i "15,24s/^/  - /g" ./config.yaml
              sed -i "s/aaa/${{ secrets.TG_BOT_TOKEN }}/g" ./config.yaml
              sed -i "s/bbb/${{ secrets.TG_USER_ID }}/g" ./config.yaml
              mkdir conf 
