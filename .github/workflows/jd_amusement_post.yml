@@ -46,5 +46,4 @@ jobs:
              mv ./config.yaml ./conf/config.yaml        
              
              python3 jd_amusement_post.py
-                  
-x1.00
+
