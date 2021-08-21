@@ -1,6 +1,6 @@
 # conf/config.yaml
 # 默认为True, 控制台打印消息
-debug: true
+debug: false
 
 # 日志保留天数
 log_days: 3
@@ -15,7 +15,6 @@ jd_cookies:
   - pt_pin=;pt_key=;
   - pt_pin=;pt_key=;
   - pt_pin=;pt_key=;
- 
 # 东东农场是否使用水滴换豆卡, 100水滴换20京豆
 jd_farm_bean_card: false
 
