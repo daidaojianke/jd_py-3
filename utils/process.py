@@ -13,7 +13,7 @@ import time
 
 import requests
 from urllib.parse import unquote
-from utils.cookie import sync_check_cookie
+from utils.cookie import sync_check_cookie, ws_key_to_pt_key
 from utils.console import println
 from utils.notify import notify
 from utils.logger import logger
@@ -184,11 +184,21 @@ def process_start(scripts_cls, name='', process_num=None, help=True, code_key=No
 
     for i in range(len(JD_COOKIES)):
         jd_cookie = JD_COOKIES[i]
-        account = unquote(jd_cookie['pt_pin'])
-        ok = sync_check_cookie(jd_cookie)
-        if not ok:  # 检查cookies状态, 这里不通知, 有定时任务会通知cookies过期!
-            println('{}.账号:{}, cookie已过期, 无法执行:{}!'.format(i+1, account, name))
-            continue
+
+        account = jd_cookie.pop('remark')
+        if not account:
+            account = unquote(jd_cookie['pt_pin'])
+
+        if jd_cookie.get('ws_key'):  # 使用ws_key
+            jd_cookie['pt_key'] = ws_key_to_pt_key(jd_cookie.get('pt_pin'), jd_cookie.get('ws_key'))
+            if not jd_cookie['pt_key']:
+                println('{}.账号:{}, ws_key已过期, 无法执行'.format(i+1, account, name))
+                continue
+        else:
+            ok = sync_check_cookie(jd_cookie)
+            if not ok:  # 检查cookies状态, 这里不通知, 有定时任务会通知cookies过期!
+                println('{}.账号:{}, cookie已过期, 无法执行:{}!'.format(i+1, account, name))
+                continue
         kwargs = {
             'name': name,
             'sort': i,   # 排序, 影响助力码顺序
